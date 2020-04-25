@@ -13,7 +13,7 @@ const app = express()
 
 app.set("trust proxy", 1)
 
-app.use(cors({ origin: * }))
+app.use(cors())
 app.use(helmet())
 app.use(bodyParser.urlencoded({
   limit: `${limit}mb`,
