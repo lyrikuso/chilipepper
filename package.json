@@ -12,7 +12,7 @@
     "url": "https://chilipepper.paithiov909.now.sh"
   },
   "scripts": {
-    "deploy": "now --target production",
+    "deploy": "now --prod",
     "generate-docs": "apidoc -i api/ -o docs/",
     "docs:dev": "vuepress dev site",
     "docs:build": "vuepress build site"

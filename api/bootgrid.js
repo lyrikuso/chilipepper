@@ -63,21 +63,21 @@ router.post("/", async (req, res) => {
     if (req.body.searchMode === "startsWith") {
       const list = _.chain(json)
         .filter(elem => {
-          return s.startsWith(elem.body, req.body.searchPhrase)
+          return s.startsWith(elem.title, req.body.searchPhrase)
         })
         .value()
       rows = list
     } else if (req.body.searchMode === "endsWith") {
       const list = _.chain(json)
         .filter(elem => {
-          return s.endsWith(elem.body, req.body.searchPhrase)
+          return s.endsWith(elem.title, req.body.searchPhrase)
         })
         .value()
       rows = list
     } else {
       const list = _.chain(json)
         .filter(elem => {
-          return s.include(elem.body, req.body.searchPhrase)
+          return s.include(elem.title, req.body.searchPhrase)
         })
         .value()
       rows = list

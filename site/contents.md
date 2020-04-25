@@ -11,6 +11,8 @@ meta:
 
 ## 短歌評の一覧
 
-<Bootgrid />
+> [こちら](https://chilipepper-pearl.now.sh/)でも検索できます。
+
+- [ゴリラにはゴリラの孤独ありぬべく | さちこ](/articles/sample)
 
 <Jssocials />

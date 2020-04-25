@@ -30,8 +30,7 @@
                         <form class="form-horizontal" @submit.stop>
                             <div class="form-group">
                                 <div class="pretty p-switch p-slim">
-                                    <input type="radio" name="switch" value="startsWith" v-model="mode"
-                                        @change="refresh">
+                                    <input type="radio" name="switch" value="startsWith" v-model="mode" @change="refresh">
                                     <div class="state p-warning">
                                         <label>で始まる</label>
                                     </div>
@@ -62,8 +61,9 @@
                             <thead>
                                 <tr>
                                     <th data-column-id="id" data-type="numeric" data-order="asc" data-identifier="true">id</th>
-                                    <th data-column-id="body">body</th>
-                                    <th data-column-id="commands" data-formatter="commands">Link</th>
+                                    <th data-column-id="title">Title</th>
+                                    <th data-column-id="taste">Taste</th>
+                                    <th data-column-id="link" data-formatter="commands">Link</th>
                                 </tr>
                             </thead>
                         </table>
@@ -130,7 +130,7 @@
                         url: "/api/bootgrid",
 						formatters: {
 							commands: (column, row) => {
-								return `<a href="https://shinabitanori/articles/${row.slug}"><i class="fa fa-file-word-o" aria-hidden="true"></i></a>`
+								return `<a href="https://shinabitanori.at-ninja.jp/articles/${row.link}"><i class="fa fa-file-word-o" aria-hidden="true"></i></a>`
 							}
 						},
                         requestHandler: (request) => {
@@ -146,8 +146,9 @@
                             let rows = response.rows.map(x => {
                                 return {
                                     id: x.id,
-                                    body: x.title,
-                                    slug: x.slug
+                                    title: x.title,
+                                    taste: x.taste,
+                                    link: x.slug
                                 }
                             })
                             return {

@@ -1,10 +1,10 @@
 ---
-title: ゴリラにはゴリラの孤独ありぬべく（さちこ）
+title: ゴリラにはゴリラの孤独ありぬべく | さちこ
 meta: 
   - name: twitter:card
     content: summary
   - name: twitter:title
-    content: ゴリラにはゴリラの孤独ありぬべく（さちこ） | 激辛歌会
+    content: ゴリラにはゴリラの孤独ありぬべく | さちこ | 激辛歌会
   - name: twitter:image
     content: https://shinabitanori.at-ninja.jp/header.jpg
 ---
