@@ -1,6 +1,6 @@
 <template>
 <clientOnly>
-  <script async :src="src"></script>
+	<script async :src="src"></script>
 </clientOnly>
 </template>
 

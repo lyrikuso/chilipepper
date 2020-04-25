@@ -7,19 +7,35 @@
   },
   "license": "MIT",
   "private": true,
+  "apidoc": {
+    "title": "gson4bootgrid",
+    "url": "https://chilipepper.paithiov909.now.sh"
+  },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "deploy": "now --target production",
+    "generate-docs": "apidoc -i api/ -o docs/",
+    "docs:dev": "vuepress dev site",
+    "docs:build": "vuepress build site"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "underscore": "^1.9.1"
+    "sqlite3": "^4.1.0",
+    "underscore": "^1.9.1",
+    "underscore.string": "^3.3.5"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "^1.0.0-rc.1",
     "@vuepress/plugin-google-analytics": "^1.1.0",
     "@vuepress/plugin-last-updated": "^1.1.0",
     "@vuepress/plugin-register-components": "^1.0.0-rc.1",
+    "apidoc": "^0.20.1",
     "dotenv": "^8.2.0",
     "moment-locales-webpack-plugin": "^1.1.0",
     "vuepress": "^1.1.0"

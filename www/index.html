@@ -1,0 +1,171 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>gson4bootgrid</title>
+    <meta name="description" content="Google spreadsheet to json converter designed for jquery.bootgrid">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/3.0.0/pretty-checkbox.min.css" integrity="sha256-KCHcsGm2E36dSODOtMCcBadNAbEUW5m+1xLId7xgLmw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.css" integrity="sha256-i397iDijTcJqMf2j733J1b+WKakC2U8Y3k2eMScEugA=" crossorigin="anonymous" />
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div id="app">
+        <section class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 col-md-offset-1">
+                    <div class="page-header">
+                        <form class="form-horizontal" @submit.stop>
+                            <div class="form-group">
+                                <div class="pretty p-switch p-slim">
+                                    <input type="radio" name="switch" value="startsWith" v-model="mode"
+                                        @change="refresh">
+                                    <div class="state p-warning">
+                                        <label>で始まる</label>
+                                    </div>
+                                </div>
+                                <div class="pretty p-switch p-slim">
+                                    <input type="radio" name="switch" value="endsWith" v-model="mode" @change="refresh">
+                                    <div class="state p-warning">
+                                        <label>で終わる</label>
+                                    </div>
+                                </div>
+                                <div class="pretty p-switch p-slim">
+                                    <input type="radio" name="switch" with="include" v-model="mode" @change="refresh">
+                                    <div class="state p-warning">
+                                        <label>を含む</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-12 col-md-offset-1">
+                    <div class="page-header table-responsive">
+                        <table id="grid" class="table table-condensed table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-column-id="id" data-type="numeric" data-order="asc" data-identifier="true">id</th>
+                                    <th data-column-id="body">body</th>
+                                    <th data-column-id="commands" data-formatter="commands">Link</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha256-0rguYS0qgS6L4qVzANq4kjxPLtvnp5nn2nB5G1lWRv4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js" integrity="sha256-ufGElb3TnOtzl5E4c/qQnZFGP+FYEZj5kbSEdJNrw0A=" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.min.js" integrity="sha256-SmtwmVvHBrVWUXiJck4F7jgN2ioB+T2KPIBueY8S4SE=" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js" integrity="sha256-S952WuaxC9XbI06xeWuSuSuvTewXEQQOU2OYBe7kdIs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.fa.min.js" integrity="sha256-u/DZtNLWZSvkNdIL4PTQzEJUAFLzM758asxZnhd+5R4=" crossorigin="anonymous"></script>
+
+    <script defer>
+        // Avoid `console` errors in browsers that lack a console.
+        (function () {
+            var method;
+            var noop = function () {};
+            var methods = [
+                "assert", "clear", "count", "debug", "dir", "dirxml", "error",
+                "exception", "group", "groupCollapsed", "groupEnd", "info", "log",
+                "markTimeline", "profile", "profileEnd", "table", "time", "timeEnd",
+                "timeline", "timelineEnd", "timeStamp", "trace", "warn"
+            ];
+            var length = methods.length;
+            var console = (window.console = window.console || {});
+            while (length--) {
+                method = methods[length];
+                // Only stub undefined methods.
+                if (!console[method]) {
+                    console[method] = noop;
+                }
+            }
+        }());
+    </script>
+
+    <script defer>
+        const app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    mode: "startsWith",
+                    url: "https://bit.ly/2KxFc0H"
+                }
+            },
+            methods: {
+                refresh() {
+                    this.$nextTick(() => {
+						$("#grid").bootgrid("reload")
+                    })
+                }
+            },
+            mounted() {
+                const self = this;
+                this.$nextTick(() => {
+                    $("#grid").bootgrid({
+                        rowCount: [10, 25, 50, 100],
+                        sorting: false,
+                        ajax: true,
+                        url: "/api/bootgrid",
+						formatters: {
+							commands: (column, row) => {
+								return `<a href="https://shinabitanori/articles/${row.slug}"><i class="fa fa-file-word-o" aria-hidden="true"></i></a>`
+							}
+						},
+                        requestHandler: (request) => {
+                            return {
+                                url: self.$data.url,
+                                current: request.current,
+                                rowCount: request.rowCount,
+                                searchMode: self.$data.mode,
+                                searchPhrase: request.searchPhrase,
+                            }
+                        },
+                        responseHandler: (response) => {
+                            let rows = response.rows.map(x => {
+                                return {
+                                    id: x.id,
+                                    body: x.title,
+                                    slug: x.slug
+                                }
+                            })
+                            return {
+                                current: response.current,
+                                rowCount: response.rowCount,
+                                rows: rows,
+                                total: response.total
+                            }
+                        },
+                        ajaxSettings: {
+                            cache: true,
+                            crossDomain: true
+                        }
+                    })
+                })
+            }
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "gson4bootgrid",
+  "github": {
+    "enabled": false
+  },
+  "env": {
+    "LIMIT": "1"
+  },
+  "builds": [
+    { "src": "www/**/*", "use": "@now/static" },
+    { "src": "api/**/*.js", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "www/index.html" },
+    { "src": "/dist/(?<file>[^/]+)", "dest": "www/dist/$file" },
+    { "src": "/api/(?<endpoint>[^/]+)", "methods": ["GET", "POST"], "dest": "/api/$endpoint.js" }
+  ]
+}
