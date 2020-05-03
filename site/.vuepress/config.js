@@ -28,10 +28,10 @@ module.exports = {
     ["link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials.min.css", integrity: "sha256-1tuEbDCHX3d1WHIyyRhG9D9zsoaQpu1tpd5lPqdqC8s=", crossorigin: "anonymous" }],
     ["link", { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials-theme-plain.min.css", integrity: "sha256-lytJoWXxuDd1JIbuJO8zrk6cykEiSgVV4DWf7X5R2Lw=", crossorigin: "anonymous" }],
  // ["script", { src: "/nehan/js/nehan.min.js", charset: "UTF-8", defer: true }],
-    ["script", { src: "https://cdn.embedly.com/widgets/platform.js", charset: "UTF-8", async: true }],
-    ["script", { src: "https://platform.twitter.com/widgets.js", charset: "UTF-8", async: true }],
+ // ["script", { src: "https://cdn.embedly.com/widgets/platform.js", charset: "UTF-8", async: true }],
+ // ["script", { src: "https://platform.twitter.com/widgets.js", charset: "UTF-8", async: true }],
     ["script", { src: "https://unpkg.com/import-doc/dist/import-doc/import-doc.js", charset: "UTF-8", async: true }],
-    ["script", { src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js", integrity: "sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=", crossorigin: "anonymous" }],
+    ["script", { src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js", integrity: "sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=", crossorigin: "anonymous" }],
     ["script", { src: "https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials.min.js", integrity: "sha256-QhF/xll4pV2gDRtAJ1lvi9YINqySpAP+0NIzIX5voZw=", crossorigin: "anonymous" }],
   ],
   plugins: [

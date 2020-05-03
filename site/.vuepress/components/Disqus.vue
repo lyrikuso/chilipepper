@@ -13,7 +13,7 @@ export default {
 		const self = this;
 		(function() { // DON'T EDIT BELOW THIS LINE
 			let d = self.$el, s = document.createElement('script');
-			s.src = 'https://lyrical-hanakuso.disqus.com/embed.js';
+			s.src = 'https://ji-xin-ge-hui.disqus.com/embed.js';
 			s.setAttribute('data-timestamp', +new Date());
 			d.insertAdjacentElement('afterbegin', s);
 		})();

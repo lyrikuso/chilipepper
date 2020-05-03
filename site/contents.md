@@ -13,6 +13,6 @@ meta:
 
 > [こちら](https://chilipepper-pearl.now.sh/)でも検索できます。
 
-- [ゴリラにはゴリラの孤独ありぬべく | さちこ](/articles/sample)
+- [ゴリラにはゴリラの孤独ありぬべく | さちこ](/articles/sample.md)
 
 <Jssocials />
