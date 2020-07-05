@@ -1,6 +1,6 @@
 {
   "name": "chilipepper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/paithiov909/chilipepper.git"
@@ -26,7 +26,6 @@
     "helmet": "^3.16.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "sqlite3": "^4.1.0",
     "underscore": "^1.9.1",
     "underscore.string": "^3.3.5"
   },
